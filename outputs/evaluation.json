@@ -1,0 +1,952 @@
+{
+  "generated_utc": "2026-11-16T05:29:44.622750+00:00",
+  "synthetic_only": true,
+  "model": "en_core_web_sm",
+  "threshold": 0.35,
+  "versions": {
+    "presidio-analyzer": "2.2.366",
+    "presidio-anonymizer": "2.2.366",
+    "spacy": "3.8.18",
+    "en-core-web-sm": "3.8.0"
+  },
+  "metrics": {
+    "cases": 28,
+    "standard_and_negative_cases": 24,
+    "challenge_cases": 4,
+    "tp": 19,
+    "fp": 1,
+    "fn": 1,
+    "exact_span_precision": 0.95,
+    "exact_span_recall": 0.95,
+    "standard_gold_values": 20,
+    "standard_remaining_values": 0,
+    "challenge_remaining_values": 2,
+    "case_pass_count": 26,
+    "median_sanitize_ms": 8.08
+  },
+  "http_forwarding": {
+    "receiver": "local test double; no live LLM or vector database",
+    "statuses": [
+      200,
+      200
+    ],
+    "received": [
+      {
+        "path": "/llm",
+        "payload": {
+          "text": "Email <EMAIL_ADDRESS> for help."
+        }
+      },
+      {
+        "path": "/vector-ingestion",
+        "payload": {
+          "text": "Email <EMAIL_ADDRESS> for help."
+        }
+      }
+    ]
+  },
+  "cases": [
+    {
+      "group": "standard",
+      "category": "email",
+      "text": "Email alex@example.com for help.",
+      "gold": [
+        {
+          "entity": "EMAIL_ADDRESS",
+          "start": 6,
+          "end": 22,
+          "value": "alex@example.com"
+        }
+      ],
+      "id": "c01",
+      "sanitized_text": "Email <EMAIL_ADDRESS> for help.",
+      "detections": {
+        "EMAIL_ADDRESS": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 251.0,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "EMAIL_ADDRESS",
+          "start": 6,
+          "end": 22
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "email",
+      "text": "Write to support@example.org today.",
+      "gold": [
+        {
+          "entity": "EMAIL_ADDRESS",
+          "start": 9,
+          "end": 28,
+          "value": "support@example.org"
+        }
+      ],
+      "id": "c02",
+      "sanitized_text": "Write to <EMAIL_ADDRESS> today.",
+      "detections": {
+        "EMAIL_ADDRESS": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 8.46,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "EMAIL_ADDRESS",
+          "start": 9,
+          "end": 28
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "email",
+      "text": "Contact jane.doe@example.net.",
+      "gold": [
+        {
+          "entity": "EMAIL_ADDRESS",
+          "start": 8,
+          "end": 28,
+          "value": "jane.doe@example.net"
+        }
+      ],
+      "id": "c03",
+      "sanitized_text": "Contact <EMAIL_ADDRESS>.",
+      "detections": {
+        "EMAIL_ADDRESS": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 7.58,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "EMAIL_ADDRESS",
+          "start": 8,
+          "end": 28
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "email",
+      "text": "Use billing+test@example.com.",
+      "gold": [
+        {
+          "entity": "EMAIL_ADDRESS",
+          "start": 4,
+          "end": 28,
+          "value": "billing+test@example.com"
+        }
+      ],
+      "id": "c04",
+      "sanitized_text": "Use <EMAIL_ADDRESS>.",
+      "detections": {
+        "EMAIL_ADDRESS": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 8.31,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "EMAIL_ADDRESS",
+          "start": 4,
+          "end": 28
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "phone",
+      "text": "My phone number is 212-555-0187.",
+      "gold": [
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 19,
+          "end": 31,
+          "value": "212-555-0187"
+        }
+      ],
+      "id": "c05",
+      "sanitized_text": "My phone number is <PHONE_NUMBER>.",
+      "detections": {
+        "PHONE_NUMBER": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 48.32,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 19,
+          "end": 31
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "phone",
+      "text": "Call +1 202-555-0143.",
+      "gold": [
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 5,
+          "end": 20,
+          "value": "+1 202-555-0143"
+        }
+      ],
+      "id": "c06",
+      "sanitized_text": "Call <PHONE_NUMBER>.",
+      "detections": {
+        "PHONE_NUMBER": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 8.55,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 5,
+          "end": 20
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "phone",
+      "text": "Telephone: (415) 555-0123.",
+      "gold": [
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 11,
+          "end": 25,
+          "value": "(415) 555-0123"
+        }
+      ],
+      "id": "c07",
+      "sanitized_text": "Telephone: <PHONE_NUMBER>.",
+      "detections": {
+        "PHONE_NUMBER": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 10.4,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 11,
+          "end": 25
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "card",
+      "text": "Test credit card 4111 1111 1111 1111.",
+      "gold": [
+        {
+          "entity": "CREDIT_CARD",
+          "start": 17,
+          "end": 36,
+          "value": "4111 1111 1111 1111"
+        }
+      ],
+      "id": "c08",
+      "sanitized_text": "Test credit card <CREDIT_CARD>.",
+      "detections": {
+        "CREDIT_CARD": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 26.24,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "CREDIT_CARD",
+          "start": 17,
+          "end": 36
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "card",
+      "text": "Credit card number: 5555555555554444.",
+      "gold": [
+        {
+          "entity": "CREDIT_CARD",
+          "start": 20,
+          "end": 36,
+          "value": "5555555555554444"
+        }
+      ],
+      "id": "c09",
+      "sanitized_text": "Credit card number: <CREDIT_CARD>.",
+      "detections": {
+        "CREDIT_CARD": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 6.87,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "CREDIT_CARD",
+          "start": 20,
+          "end": 36
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "ssn",
+      "text": "My social security number is 078-05-1120.",
+      "gold": [
+        {
+          "entity": "US_SSN",
+          "start": 29,
+          "end": 40,
+          "value": "078-05-1120"
+        }
+      ],
+      "id": "c10",
+      "sanitized_text": "My social security number is <PHONE_NUMBER>.",
+      "detections": {
+        "PHONE_NUMBER": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 8.23,
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 29,
+          "end": 40
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "ip",
+      "text": "Client IP address is 192.168.1.10.",
+      "gold": [
+        {
+          "entity": "IP_ADDRESS",
+          "start": 21,
+          "end": 33,
+          "value": "192.168.1.10"
+        }
+      ],
+      "id": "c11",
+      "sanitized_text": "Client IP address is <IP_ADDRESS>.",
+      "detections": {
+        "IP_ADDRESS": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 9.79,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "IP_ADDRESS",
+          "start": 21,
+          "end": 33
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "ip",
+      "text": "Server IP: 10.0.0.25.",
+      "gold": [
+        {
+          "entity": "IP_ADDRESS",
+          "start": 11,
+          "end": 20,
+          "value": "10.0.0.25"
+        }
+      ],
+      "id": "c12",
+      "sanitized_text": "Server IP: <IP_ADDRESS>.",
+      "detections": {
+        "IP_ADDRESS": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 7.93,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "IP_ADDRESS",
+          "start": 11,
+          "end": 20
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "person",
+      "text": "My name is John Smith.",
+      "gold": [
+        {
+          "entity": "PERSON",
+          "start": 11,
+          "end": 21,
+          "value": "John Smith"
+        }
+      ],
+      "id": "c13",
+      "sanitized_text": "My name is <PERSON>.",
+      "detections": {
+        "PERSON": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 7.51,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "PERSON",
+          "start": 11,
+          "end": 21
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "person",
+      "text": "Please contact Jane Doe.",
+      "gold": [
+        {
+          "entity": "PERSON",
+          "start": 15,
+          "end": 23,
+          "value": "Jane Doe"
+        }
+      ],
+      "id": "c14",
+      "sanitized_text": "Please contact <PERSON>.",
+      "detections": {
+        "PERSON": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 8.54,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "PERSON",
+          "start": 15,
+          "end": 23
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "location",
+      "text": "I live in New York.",
+      "gold": [
+        {
+          "entity": "LOCATION",
+          "start": 10,
+          "end": 18,
+          "value": "New York"
+        }
+      ],
+      "id": "c15",
+      "sanitized_text": "I live in <LOCATION>.",
+      "detections": {
+        "LOCATION": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 8.7,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "LOCATION",
+          "start": 10,
+          "end": 18
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "location",
+      "text": "The office is in London.",
+      "gold": [
+        {
+          "entity": "LOCATION",
+          "start": 17,
+          "end": 23,
+          "value": "London"
+        }
+      ],
+      "id": "c16",
+      "sanitized_text": "The office is in <LOCATION>.",
+      "detections": {
+        "LOCATION": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 6.27,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "LOCATION",
+          "start": 17,
+          "end": 23
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "iban",
+      "text": "Test IBAN: GB82 WEST 1234 5698 7654 32.",
+      "gold": [
+        {
+          "entity": "IBAN_CODE",
+          "start": 11,
+          "end": 38,
+          "value": "GB82 WEST 1234 5698 7654 32"
+        }
+      ],
+      "id": "c17",
+      "sanitized_text": "Test IBAN: <IBAN_CODE>.",
+      "detections": {
+        "IBAN_CODE": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 10.29,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "IBAN_CODE",
+          "start": 11,
+          "end": 38
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "standard",
+      "category": "mixed",
+      "text": "Contact John Smith at alex@example.com or 212-555-0187.",
+      "gold": [
+        {
+          "entity": "PERSON",
+          "start": 8,
+          "end": 18,
+          "value": "John Smith"
+        },
+        {
+          "entity": "EMAIL_ADDRESS",
+          "start": 22,
+          "end": 38,
+          "value": "alex@example.com"
+        },
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 42,
+          "end": 54,
+          "value": "212-555-0187"
+        }
+      ],
+      "id": "c18",
+      "sanitized_text": "Contact <PERSON> at <EMAIL_ADDRESS> or <PHONE_NUMBER>.",
+      "detections": {
+        "EMAIL_ADDRESS": 1,
+        "PERSON": 1,
+        "PHONE_NUMBER": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 8.92,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 3,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "EMAIL_ADDRESS",
+          "start": 22,
+          "end": 38
+        },
+        {
+          "entity": "PERSON",
+          "start": 8,
+          "end": 18
+        },
+        {
+          "entity": "PHONE_NUMBER",
+          "start": 42,
+          "end": 54
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "negative",
+      "category": "no selected PII",
+      "text": "Please summarize this document.",
+      "gold": [],
+      "id": "c19",
+      "sanitized_text": "Please summarize this document.",
+      "detections": {},
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 6.69,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 0,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [],
+      "case_pass": true
+    },
+    {
+      "group": "negative",
+      "category": "no selected PII",
+      "text": "The order contains three blue notebooks.",
+      "gold": [],
+      "id": "c20",
+      "sanitized_text": "The order contains three blue notebooks.",
+      "detections": {},
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 7.16,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 0,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [],
+      "case_pass": true
+    },
+    {
+      "group": "negative",
+      "category": "no selected PII",
+      "text": "What is the refund policy?",
+      "gold": [],
+      "id": "c21",
+      "sanitized_text": "What is the refund policy?",
+      "detections": {},
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 6.43,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 0,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [],
+      "case_pass": true
+    },
+    {
+      "group": "negative",
+      "category": "no selected PII",
+      "text": "Total items: 42.",
+      "gold": [],
+      "id": "c22",
+      "sanitized_text": "Total items: 42.",
+      "detections": {},
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 7.13,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 0,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [],
+      "case_pass": true
+    },
+    {
+      "group": "negative",
+      "category": "no selected PII",
+      "text": "The meeting is tomorrow.",
+      "gold": [],
+      "id": "c23",
+      "sanitized_text": "The meeting is tomorrow.",
+      "detections": {},
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 5.93,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 0,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [],
+      "case_pass": true
+    },
+    {
+      "group": "negative",
+      "category": "no selected PII",
+      "text": "Explain how a sorting algorithm works.",
+      "gold": [],
+      "id": "c24",
+      "sanitized_text": "Explain how a sorting algorithm works.",
+      "detections": {},
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 9.34,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "gold_count": 0,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [],
+      "case_pass": true
+    },
+    {
+      "group": "challenge",
+      "category": "out-of-distribution or unsupported",
+      "text": "Email alex [at] example [dot] com.",
+      "gold": [
+        {
+          "entity": "SENSITIVE_CHALLENGE",
+          "start": 6,
+          "end": 33,
+          "value": "alex [at] example [dot] com"
+        }
+      ],
+      "id": "c25",
+      "sanitized_text": "<PERSON> [at] example [dot] com.",
+      "detections": {
+        "PERSON": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 7.81,
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "PERSON",
+          "start": 0,
+          "end": 10
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "challenge",
+      "category": "out-of-distribution or unsupported",
+      "text": "Email alex\uff20example.com.",
+      "gold": [
+        {
+          "entity": "SENSITIVE_CHALLENGE",
+          "start": 6,
+          "end": 22,
+          "value": "alex\uff20example.com"
+        }
+      ],
+      "id": "c26",
+      "sanitized_text": "Email alex\uff20example.com.",
+      "detections": {},
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 5.16,
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "gold_count": 1,
+      "remaining_count": 1,
+      "remaining_values": [
+        "alex\uff20example.com"
+      ],
+      "predicted": [],
+      "case_pass": false
+    },
+    {
+      "group": "challenge",
+      "category": "out-of-distribution or unsupported",
+      "text": "My name is Xzqv Blrpt.",
+      "gold": [
+        {
+          "entity": "SENSITIVE_CHALLENGE",
+          "start": 11,
+          "end": 21,
+          "value": "Xzqv Blrpt"
+        }
+      ],
+      "id": "c27",
+      "sanitized_text": "My name is <PERSON>.",
+      "detections": {
+        "PERSON": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 6.06,
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "gold_count": 1,
+      "remaining_count": 0,
+      "remaining_values": [],
+      "predicted": [
+        {
+          "entity": "PERSON",
+          "start": 11,
+          "end": 21
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "group": "challenge",
+      "category": "out-of-distribution or unsupported",
+      "text": "My private account alias is blue-falcon-77.",
+      "gold": [
+        {
+          "entity": "SENSITIVE_CHALLENGE",
+          "start": 28,
+          "end": 42,
+          "value": "blue-falcon-77"
+        }
+      ],
+      "id": "c28",
+      "sanitized_text": "My private account alias is blue-falcon-77.",
+      "detections": {},
+      "language": "en",
+      "threshold": 0.35,
+      "latency_ms": 6.68,
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "gold_count": 1,
+      "remaining_count": 1,
+      "remaining_values": [
+        "blue-falcon-77"
+      ],
+      "predicted": [],
+      "case_pass": false
+    }
+  ]
+}
