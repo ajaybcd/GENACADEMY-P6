@@ -3,7 +3,7 @@ import streamlit as st
 from gateway import get_sanitizer, ENTITIES, THRESHOLD
 import json
 from pathlib import Path
-from test_examples import EXAMPLES
+from examples import EXAMPLES
 
 st.set_page_config(page_title="Week 6 | PII Gateway", page_icon="🛡️", layout="wide")
 st.title("PII Masking & Data Sanitization Gateway")
@@ -15,10 +15,14 @@ examples = {
     "IP address": "Client IP address is 192.168.1.10.",
     "No PII": "Please summarize the refund policy.",
     "Challenge: disguised email": "Email alex [at] example [dot] com.",
+    "Challenge: full-width email": "Email alex＠example.com.",
+    "Challenge: private alias": "My private account alias is blue-falcon-77.",
 }
 for entity, sample, value in EXAMPLES:
     examples[entity.replace("_", " ").title()] = sample
 chosen = st.selectbox("Choose an example", list(examples))
+if chosen.startswith("Challenge:"):
+    st.warning("Disguised values deliberately test detection gaps. The full-width email and private alias were not masked in our saved tests; the bracketed email was only partially masked. These are observed misses, not successful redactions.")
 text = st.text_area("Text to sanitize", value=examples[chosen], key="input_"+chosen, height=150, max_chars=20000)
 if st.button("Detect and redact", type="primary"):
     if not text.strip():
