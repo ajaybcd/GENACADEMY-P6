@@ -1,0 +1,140 @@
+{
+  "synthetic_only": true,
+  "entity_examples": [
+    {
+      "expected_entity": "PERSON",
+      "input": "My name is John Smith.",
+      "sanitized_text": "My name is <PERSON>.",
+      "detections": {
+        "PERSON": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "expected_type_detected": true,
+      "complete_value_removed": true
+    },
+    {
+      "expected_entity": "EMAIL_ADDRESS",
+      "input": "Email alex@example.com for help.",
+      "sanitized_text": "Email <EMAIL_ADDRESS> for help.",
+      "detections": {
+        "EMAIL_ADDRESS": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "expected_type_detected": true,
+      "complete_value_removed": true
+    },
+    {
+      "expected_entity": "PHONE_NUMBER",
+      "input": "My phone number is 212-555-0187.",
+      "sanitized_text": "My phone number is <PHONE_NUMBER>.",
+      "detections": {
+        "PHONE_NUMBER": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "expected_type_detected": true,
+      "complete_value_removed": true
+    },
+    {
+      "expected_entity": "CREDIT_CARD",
+      "input": "Test credit card: 4111 1111 1111 1111.",
+      "sanitized_text": "Test credit card: <CREDIT_CARD>.",
+      "detections": {
+        "CREDIT_CARD": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "expected_type_detected": true,
+      "complete_value_removed": true
+    },
+    {
+      "expected_entity": "US_SSN",
+      "input": "My social security number is 078-05-1120.",
+      "sanitized_text": "My social security number is <PHONE_NUMBER>.",
+      "detections": {
+        "PHONE_NUMBER": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "expected_type_detected": false,
+      "complete_value_removed": true
+    },
+    {
+      "expected_entity": "IP_ADDRESS",
+      "input": "Client IP address is 192.168.1.10.",
+      "sanitized_text": "Client IP address is <IP_ADDRESS>.",
+      "detections": {
+        "IP_ADDRESS": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "expected_type_detected": true,
+      "complete_value_removed": true
+    },
+    {
+      "expected_entity": "LOCATION",
+      "input": "I live in New York.",
+      "sanitized_text": "I live in <LOCATION>.",
+      "detections": {
+        "LOCATION": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "expected_type_detected": true,
+      "complete_value_removed": true
+    },
+    {
+      "expected_entity": "IBAN_CODE",
+      "input": "Test IBAN: GB82 WEST 1234 5698 7654 32.",
+      "sanitized_text": "Test IBAN: <IBAN_CODE>.",
+      "detections": {
+        "IBAN_CODE": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "expected_type_detected": true,
+      "complete_value_removed": true
+    },
+    {
+      "expected_entity": "US_PASSPORT",
+      "input": "My US passport number is 123456789.",
+      "sanitized_text": "My <LOCATION> passport number is <US_PASSPORT>.",
+      "detections": {
+        "LOCATION": 1,
+        "US_PASSPORT": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "expected_type_detected": true,
+      "complete_value_removed": true
+    },
+    {
+      "expected_entity": "US_DRIVER_LICENSE",
+      "input": "My driver license number is D1234567.",
+      "sanitized_text": "My driver license number is <US_DRIVER_LICENSE>.",
+      "detections": {
+        "US_DRIVER_LICENSE": 1
+      },
+      "language": "en",
+      "threshold": 0.35,
+      "expected_type_detected": true,
+      "complete_value_removed": true
+    }
+  ],
+  "clean_text": {
+    "sanitized_text": "Please summarize the refund policy.",
+    "detections": {},
+    "language": "en",
+    "threshold": 0.35
+  },
+  "challenge": {
+    "sanitized_text": "<PERSON> [at] example [dot] com.",
+    "detections": {
+      "PERSON": 1
+    },
+    "language": "en",
+    "threshold": 0.35
+  }
+}

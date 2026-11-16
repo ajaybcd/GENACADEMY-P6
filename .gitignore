@@ -6,3 +6,6 @@ __pycache__/
 .streamlit/secrets.toml
 *.log
 work/
+pytest-cache-files-*/
+*.inspect.ndjson
+outputs/project_report_and_transcript.docx

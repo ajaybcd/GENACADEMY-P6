@@ -1,0 +1,22 @@
+{
+  "ComputerGenerated": true,
+  "Voice": "Microsoft David Desktop",
+  "Engine": "Windows System Speech",
+  "ExternalAPIUsed": false,
+  "script": "outputs/voiceover_script.txt",
+  "script_sha256": "ee954ade05cdd0800c0f0edb09fea29930c85e471c5b9a3c4484aee39c3d974a",
+  "tracks": [
+    {
+      "file": "voiceover/presentation_voiceover.wav",
+      "seconds": 177.73,
+      "bytes": 7837784,
+      "sha256": "015a94a554718e2ba971fcb323210a8789203120723ceeac02c4d301ce7fdbc3"
+    },
+    {
+      "file": "voiceover/demo_voiceover.wav",
+      "seconds": 75.42,
+      "bytes": 3325894,
+      "sha256": "e696757cbdb1cfb3f82075c354a9c5967c8ece84d874f555c4322f0de96518fc"
+    }
+  ]
+}

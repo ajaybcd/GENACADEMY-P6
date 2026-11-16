@@ -1,0 +1,31 @@
+{
+  "verified_utc": "2026-11-16T05:51:09.544943+00:00",
+  "status": "PASS",
+  "evidence_cases": 28,
+  "category_examples": 10,
+  "category_expected_type_detected": 9,
+  "category_complete_values_removed": 10,
+  "gateway_tests": 6,
+  "notebook_executed_code_cells": 4,
+  "audio": [
+    {
+      "file": "voiceover/presentation_voiceover.wav",
+      "seconds": 177.73,
+      "bytes": 7837784,
+      "sha256": "015a94a554718e2ba971fcb323210a8789203120723ceeac02c4d301ce7fdbc3"
+    },
+    {
+      "file": "voiceover/demo_voiceover.wav",
+      "seconds": 75.42,
+      "bytes": 3325894,
+      "sha256": "e696757cbdb1cfb3f82075c354a9c5967c8ece84d874f555c4322f0de96518fc"
+    }
+  ],
+  "rendering": {
+    "summary_pdf": "four pages visually reviewed",
+    "docx": "package checked; native Word pagination unverified because LibreOffice is absent",
+    "presentation": "eight renders reviewed; package geometry and import passed",
+    "workbook": "both sheets reviewed; formulas and mutation recalculation checked"
+  },
+  "live_integrations": "Local HTTP receivers only. No live LLM or vector database."
+}

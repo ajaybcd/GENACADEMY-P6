@@ -1,0 +1,9 @@
+This is the Week 6 PII Masking and Data Sanitization Gateway. The demonstration uses Microsoft Presidio and requires no model API key.
+
+Choose the name, email and phone example, then click Detect and redact. The output replaces the detected name, email address and phone number with labels. You can edit the fictional input and try again.
+
+Now choose the credit card example and run detection. Next, try the no PII example to see what happens to ordinary text. Finally, choose the disguised email challenge. A sensitive value can remain visible because detection is imperfect.
+
+Open the measured evaluation section. The standard synthetic set has ninety-five percent exact-span precision and recall. Two challenge values remain visible. These are measured results for this small corpus, not a privacy guarantee.
+
+The API tests verify that sanitized text reaches both local receivers. Live language models and vector databases are outside this demonstration. Use fictional data on the hosted app because the Streamlit server receives the original text.

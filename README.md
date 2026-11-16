@@ -4,6 +4,26 @@ Microsoft Presidio detects selected PII in English text and replaces it with ent
 
 ## Interactive demo
 
+[Open the hosted Streamlit app](https://genacademy-p6-pii-gateway.streamlit.app/).
+
+Use **Run one example per PII type** to execute ten category examples. All ten complete values were removed in the saved run, but the SSN fixture was classified as a phone number. The passport example also redacted the country abbreviation. Clean text stayed unchanged; a disguised email was only partially masked. Exact inputs and outputs are in `outputs/entity_examples.json` and the summary appendix.
+
+## Submission files
+
+- [Project summary and tested examples PDF](outputs/project_summary.pdf)
+- [Editable project summary Word document](outputs/project_summary.docx)
+- [Summary voiceover](outputs/voiceover/presentation_voiceover.wav)
+- [Demo voiceover](outputs/voiceover/demo_voiceover.wav)
+- [Voiceover transcript](outputs/voiceover_script.txt)
+- [Twenty-line summary](outputs/project_summary_20_lines.txt)
+- [Presentation](outputs/presidio_gateway_presentation.pptx)
+- [Evaluation workbook](outputs/presidio_evaluation.xlsx)
+- [Executed evidence notebook](presidio_gateway_evaluation.ipynb)
+- [Main evaluation evidence](outputs/evaluation.json)
+- [Ten category examples](outputs/entity_examples.json)
+
+Audio is computer-generated Windows speech, not the author's recorded voice. No video is included. The PDF pages and slide renders were visually reviewed. Native Word pagination could not be verified because the packaged LibreOffice renderer is unavailable. The PDF is the visually checked reading copy. Presentation structure, font policy, geometry and first-party import checks passed; native desktop PowerPoint playback was not tested.
+
 Streamlit entrypoint: `app.py`. Choose an example, edit the text, and click **Detect and redact**. Use fictional data only. On Community Cloud, the original text is processed on the hosting server; redaction does not happen inside your browser. The app does not write user text to files, send it to external models, or retain a reversible mapping. Hosting infrastructure may have its own logging and retention policies.
 
 ## Windows quick start

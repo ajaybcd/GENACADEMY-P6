@@ -3,6 +3,7 @@ import streamlit as st
 from gateway import get_sanitizer, ENTITIES, THRESHOLD
 import json
 from pathlib import Path
+from test_examples import EXAMPLES
 
 st.set_page_config(page_title="Week 6 | PII Gateway", page_icon="🛡️", layout="wide")
 st.title("PII Masking & Data Sanitization Gateway")
@@ -15,6 +16,8 @@ examples = {
     "No PII": "Please summarize the refund policy.",
     "Challenge: disguised email": "Email alex [at] example [dot] com.",
 }
+for entity, sample, value in EXAMPLES:
+    examples[entity.replace("_", " ").title()] = sample
 chosen = st.selectbox("Choose an example", list(examples))
 text = st.text_area("Text to sanitize", value=examples[chosen], key="input_"+chosen, height=150, max_chars=20000)
 if st.button("Detect and redact", type="primary"):
@@ -32,6 +35,21 @@ if st.button("Detect and redact", type="primary"):
             st.json(result["detections"])
             st.caption("Counts are detector candidates before overlap resolution; replacements can be fewer.")
             st.download_button("Download sanitized text", result["sanitized_text"], "sanitized.txt")
+if st.button("Run one example per PII type"):
+    try:
+        sanitizer = get_sanitizer()
+        checks = []
+        for entity, sample, value in EXAMPLES:
+            result = sanitizer.sanitize(sample)
+            checks.append({"Expected type":entity, "Synthetic input":sample,
+                           "Sanitized output":result["sanitized_text"],
+                           "Expected type detected":entity in result["detections"],
+                           "Complete value removed":value not in result["sanitized_text"]})
+        st.subheader("One example per PII type")
+        st.dataframe(checks, hide_index=True, width="stretch")
+        st.caption("Removal and correct classification are separate checks. These examples are demonstrations, not a held-out test set.")
+    except Exception:
+        st.error("Example run failed. Nothing was forwarded.")
 with st.expander("How the gateway works"):
     st.write("Input → Presidio Analyzer → entity placeholders → configured LLM or vector-ingestion receiver")
     st.write(f"Server policy: English; threshold {THRESHOLD}. Categories: {', '.join(ENTITIES)}.")
@@ -39,10 +57,15 @@ with st.expander("How the gateway works"):
 with st.expander("Measured evaluation and limitations"):
     evidence = Path(__file__).parent / "outputs/evaluation.json"
     if evidence.exists():
-        metrics = json.loads(evidence.read_text(encoding="utf-8"))["metrics"]
+        saved = json.loads(evidence.read_text(encoding="utf-8"))
+        metrics = saved["metrics"]
         a,b,c = st.columns(3)
         a.metric("Exact-span precision", f'{metrics["exact_span_precision"]:.0%}')
         b.metric("Exact-span recall", f'{metrics["exact_span_recall"]:.0%}')
-        c.metric("Challenge values still visible", metrics["challenge_remaining_values"])
+        c.metric("Challenge values fully visible", metrics["challenge_remaining_values"])
         st.write("Scores use 24 synthetic standard/negative cases; four challenge cases are reported separately. They are not a production guarantee.")
+        st.warning("The 2 means two difficult examples were NOT masked: the full-width email and the private alias. These are observed detector misses. Another disguised email was only partially masked, so this count is not a complete privacy-risk measure.")
+        st.dataframe([{"Synthetic challenge":r["text"],"Sanitized output":r["sanitized_text"],
+                       "Complete value still visible":bool(r["remaining_count"])}
+                      for r in saved["cases"] if r["group"]=="challenge"],hide_index=True,width="stretch")
     st.write("English only. No OCR, files, secrets detection, reversible mapping, live provider adapter, authentication or production rate limiting. The server sees the original text; do not enter private information into this public demonstration.")

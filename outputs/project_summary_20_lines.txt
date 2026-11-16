@@ -1,0 +1,20 @@
+1. Week 6 implements a PII masking and data sanitization gateway.
+2. Microsoft Presidio performs detection and replacement.
+3. The Analyzer finds entity types, spans and confidence scores.
+4. The Anonymizer replaces detected spans with entity labels.
+5. The default model is en_core_web_sm 3.8.0.
+6. The policy covers ten selected entity categories in English.
+7. The configured detection threshold is 0.35.
+8. The API accepts one text field of up to 20000 characters.
+9. Streamlit provides an interactive synthetic-text demonstration.
+10. No API key is required for detection and replacement.
+11. The evaluation contains 28 synthetic cases.
+12. Standard and negative scoring uses 24 cases and 20 gold values.
+13. Exact entity-and-span precision is 95 percent.
+14. Exact entity-and-span recall is 95 percent.
+15. All 20 standard gold values disappeared as complete strings.
+16. Two of four challenge values remained visible.
+17. Both forwarding routes passed local HTTP receiver checks.
+18. Six isolated gateway contract tests passed.
+19. No live LLM or vector database was tested.
+20. Voiceover replaces video and production privacy is not guaranteed.
