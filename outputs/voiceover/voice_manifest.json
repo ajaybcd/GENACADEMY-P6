@@ -4,13 +4,13 @@
   "Engine": "Windows System Speech",
   "ExternalAPIUsed": false,
   "script": "outputs/voiceover_script.txt",
-  "script_sha256": "ee954ade05cdd0800c0f0edb09fea29930c85e471c5b9a3c4484aee39c3d974a",
+  "script_sha256": "e270fb10458b803ab3aed3335501a0fd7fcb9a56867688e55a8d917b50188cc6",
   "tracks": [
     {
       "file": "voiceover/presentation_voiceover.wav",
-      "seconds": 177.73,
-      "bytes": 7837784,
-      "sha256": "015a94a554718e2ba971fcb323210a8789203120723ceeac02c4d301ce7fdbc3"
+      "seconds": 181.33,
+      "bytes": 7996744,
+      "sha256": "e8c1689b7f939e45a0ad7cc99faaacadeecf627f9cd5c421809a1f9984a81cde"
     },
     {
       "file": "voiceover/demo_voiceover.wav",

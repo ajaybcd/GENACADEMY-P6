@@ -1,7 +1,7 @@
 WEEK 6 VOICEOVER
 
 presentation_voiceover.wav reads the six sections of the project summary.
-Duration: approximately 2 minutes 58 seconds.
+Duration: approximately 3 minutes 1 second.
 
 demo_voiceover.wav is a separate interactive-demo walkthrough.
 Duration: approximately 1 minute 15 seconds.

@@ -8,6 +8,8 @@ Microsoft Presidio detects selected PII in English text and replaces it with ent
 
 Use **Run one example per PII type** to execute ten category examples. All ten complete values were removed in the saved run, but the SSN fixture was classified as a phone number. The passport example also redacted the country abbreviation. Clean text stayed unchanged; a disguised email was only partially masked. Exact inputs and outputs are in `outputs/entity_examples.json` and the summary appendix.
 
+**Note on disguised values:** these are deliberate challenge examples. The full-width email and private alias were not masked; the bracketed email was only partially masked. These results show current detection gaps, not successful redactions. “Challenge values fully visible: 2” counts completely exposed values and does not include the additional partially exposed email.
+
 ## Submission files
 
 - [Project summary and tested examples PDF](outputs/project_summary.pdf)
